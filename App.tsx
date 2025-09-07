@@ -1,7 +1,12 @@
  import React, { useState } from 'react';
-import {StyleSheet,View,Text,ScrollView,TouchableOpacity,SafeAreaView,Image,LayoutAnimation,
- 
+import {StyleSheet,View,Text,ScrollView,Image,LayoutAnimation, TouchableOpacity,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; 
+//import { createStackNavigator } from '@react-navigation/stack'; // Why is it not working?
+
+const courses = { LongCourses: [ { id: 1, name: 'First Aid' }, { id: 2, name: 'Sewing' }, { id: 3, name: 'Landscaping' }, { id: 4, name: 'Life Skills' } ],
+                  ShortCourses: [ { id: 1, name: 'Child Minding' }, { id: 2, name: 'Cooking' }, { id: 3, name: 'Garden Maintenance' } ] 
+                }; //This is the data structure that holds the courses offered by the organization
 
 
 export default function Homepage() {
@@ -19,15 +24,18 @@ export default function Homepage() {
     setshowShortCourses(!showLongCourses);
   };
 
+  
+
   return ( // Basically the whole page is a scroll view and it contains the history of the organization and the courses offered 
-    <SafeAreaView style={styles.container}>
+    
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
         {/* Logo and Organization Info */}
         <View style={styles.header}>
           <View style={styles.logoContainer}>
-            <Text style={styles.logoText}>Organization Logo</Text>
+            <Text style={styles.logoText}>Organization Logo</Text> {/* Replace with actual logo image */}
+            {/* <Image source={logo} style={styles.logo} /> */}
           </View>
-          <Text style={styles.title}>Our Organization</Text>
+          <Text style={styles.title}>Empowering the Nation </Text>
           <Text style={styles.description}>
             Founded in 2005, our organization has been dedicated to providing quality education 
             and skill development programs to communities across SouthAfrica. We believe in 
@@ -51,7 +59,7 @@ export default function Homepage() {
               <Text style={styles.arrow}>
                 {showLongCourses ? '▼' : '►'} {/* This line changes the arrow direction based on the state of the button */}
               </Text>
-            </TouchableOpacity> //
+            </TouchableOpacity>
             
             {showLongCourses && ( // This line first checks if the state od the button is true (basically open) then shows the courses
               <View style={styles.courseList}>
@@ -96,7 +104,6 @@ export default function Homepage() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
   );
 }
 
