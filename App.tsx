@@ -1,20 +1,12 @@
  import React, { useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
-  Image,
-  LayoutAnimation,
+import {StyleSheet,View,Text,ScrollView,TouchableOpacity,SafeAreaView,Image,LayoutAnimation,
  
 } from 'react-native';
 
 
 export default function Homepage() {
-  const [longTermExpanded, setLongTermExpanded] = useState(false);
-  const [shortTermExpanded, setShortTermExpanded] = useState(false);
+  const [longTermExpanded, setLongTermExpanded] = useState(false); // Those lines indicate whether the sections are expanded or collapsed
+  const [shortTermExpanded, setShortTermExpanded] = useState(false); // The intial state is collapsed (false) 
 
   const toggleLongTerm = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
