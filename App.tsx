@@ -5,20 +5,21 @@ import {StyleSheet,View,Text,ScrollView,TouchableOpacity,SafeAreaView,Image,Layo
 
 
 export default function Homepage() {
-  const [longTermExpanded, setLongTermExpanded] = useState(false); // Those lines indicate whether the sections are expanded or collapsed
-  const [shortTermExpanded, setShortTermExpanded] = useState(false); // The intial state is collapsed (false) 
+  const [showLongCourses, setshowLongCourses] = useState(false); // Those lines indicate whether the sections are expanded or collapsed
+  const [showShortCourses, setshowShortCourses] = useState(false); // The intial state is collapsed (false) 
 
-  const toggleLongTerm = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setLongTermExpanded(!longTermExpanded);
+  // Function used to change the state of the buttons 
+  const LongCoursesClick = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut); // This line makes the animation of the button smooth
+    setshowLongCourses(!showLongCourses); // This line changes the state of the the button 
   };
 
-  const toggleShortTerm = () => {
+  const ShortCoursesClick = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setShortTermExpanded(!shortTermExpanded);
+    setshowShortCourses(!showLongCourses);
   };
 
-  return (
+  return ( // Basically the whole page is a scroll view and it contains the history of the organization and the courses offered 
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
         {/* Logo and Organization Info */}
@@ -29,7 +30,7 @@ export default function Homepage() {
           <Text style={styles.title}>Our Organization</Text>
           <Text style={styles.description}>
             Founded in 2005, our organization has been dedicated to providing quality education 
-            and skill development programs to communities across the region. We believe in 
+            and skill development programs to communities across SouthAfrica. We believe in 
             empowering individuals through practical knowledge and hands-on training.
           </Text>
           <Text style={styles.description}>
@@ -41,18 +42,18 @@ export default function Homepage() {
 
         {/* Courses Section */}
         <View style={styles.coursesSection}>
-          <Text style={styles.sectionTitle}>Courses</Text>
+          <Text style={styles.sectionTitle}>Offered courses</Text>
 
           {/* Long Term Courses */}
           <View style={styles.courseCategory}>
-            <TouchableOpacity style={styles.categoryHeader} onPress={toggleLongTerm}>
-              <Text style={styles.categoryTitle}>Long Term Courses</Text>
+            <TouchableOpacity style={styles.categoryHeader} onPress={LongCoursesClick}>
+              <Text style={styles.categoryTitle}>Long Term Courses</Text> {/* This section reprsent the long courses button */}
               <Text style={styles.arrow}>
-                {longTermExpanded ? '▼' : '►'}
+                {showLongCourses ? '▼' : '►'} {/* This line changes the arrow direction based on the state of the button */}
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> //
             
-            {longTermExpanded && (
+            {showLongCourses && ( // This line first checks if the state od the button is true (basically open) then shows the courses
               <View style={styles.courseList}>
                 <TouchableOpacity style={styles.courseItem}>
                   <Text style={styles.courseName}>First Aid</Text>
@@ -72,14 +73,14 @@ export default function Homepage() {
 
           {/* Short Term Courses */}
           <View style={styles.courseCategory}>
-            <TouchableOpacity style={styles.categoryHeader} onPress={toggleShortTerm}>
+            <TouchableOpacity style={styles.categoryHeader} onPress={ShortCoursesClick}>
               <Text style={styles.categoryTitle}>Short Term Courses</Text>
               <Text style={styles.arrow}>
-                {shortTermExpanded ? '▼' : '►'}
+                {showShortCourses ? '▼' : '►'}
               </Text>
             </TouchableOpacity>
             
-            {shortTermExpanded && (
+            {showShortCourses && ( 
               <View style={styles.courseList}> 
                 <TouchableOpacity style={styles.courseItem}>
                   <Text style={styles.courseName}>Child Minding</Text>
