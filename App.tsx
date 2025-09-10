@@ -2,11 +2,8 @@
 import {StyleSheet,View,Text,ScrollView,Image,LayoutAnimation, TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; 
-//import { createStackNavigator } from '@react-navigation/stack'; // Why is it not working?
+//import { createStackNavigator } from '@react-navigation/stack'; // needs it
 
-const courses = { LongCourses: [ { id: 1, name: 'First Aid' }, { id: 2, name: 'Sewing' }, { id: 3, name: 'Landscaping' }, { id: 4, name: 'Life Skills' } ],
-                  ShortCourses: [ { id: 1, name: 'Child Minding' }, { id: 2, name: 'Cooking' }, { id: 3, name: 'Garden Maintenance' } ] 
-                }; //This is the data structure that holds the courses offered by the organization
 
 
 export default function Homepage() {
@@ -32,19 +29,19 @@ export default function Homepage() {
         {/* Logo and Organization Info */}
         <View style={styles.header}>
           <View style={styles.logoContainer}>
-            <Text style={styles.logoText}>Organization Logo</Text> {/* Replace with actual logo image */}
-            {/* <Image source={logo} style={styles.logo} /> */}
+            <Image source={require('./assets/Logo.jpeg')} style={styles.logo} />
           </View>
           <Text style={styles.title}>Empowering the Nation </Text>
           <Text style={styles.description}>
-            Founded in 2005, our organization has been dedicated to providing quality education 
-            and skill development programs to communities across SouthAfrica. We believe in 
+            Founded in 2022 by Precious Radebe Empowering the nation dedicated its mission to provide quality education 
+            and skill development programs to communities. We believe in 
             empowering individuals through practical knowledge and hands-on training.
           </Text>
           <Text style={styles.description}>
-            Our vision is to create a society where everyone has access to education and 
-            opportunities for personal and professional growth, regardless of their background 
-            or circumstances.
+            Empowering the Nation offers courses in Johannesburg. Hundreds of domestic workrs and gardeners have been trained 
+            on both the six-month long learnership and six-week Short Skills Trainning Programmes to empower themselves and 
+            can provide more maketable skills. 
+            Choose a course and start learning today!
           </Text>
         </View>
 
@@ -88,7 +85,7 @@ export default function Homepage() {
               </Text>
             </TouchableOpacity>
             
-            {showShortCourses && ( 
+            {showShortCourses && ( // Same as above but for the short courses button (but will probably have to change when dealing with navigation)
               <View style={styles.courseList}> 
                 <TouchableOpacity style={styles.courseItem}>
                   <Text style={styles.courseName}>Child Minding</Text>
@@ -132,10 +129,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  logoText: {
-    fontSize: 14,
-    color: '#657786',
-    textAlign: 'center',
+  logo: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 8,
   },
   title: {
     fontSize: 24,
