@@ -75,7 +75,7 @@ export default function Homepage() {
               </View>
             )}
           </View>
-
+// This is a single comment 
           {/* Short Term Courses */}
           <View style={styles.courseCategory}>
             <TouchableOpacity style={styles.categoryHeader} onPress={ShortCoursesClick}>
